@@ -14,11 +14,8 @@ defmodule AlchemistTail do
   """
   def start(parsed, file, invalid) do
     body = read_file(file)
-
-    case Enum.count(parsed) do
-      0   -> print_n_lines(body, 10)
-      _   -> print_n_lines(body, elem(parsed, 1))
-    end
+    flags = Enum.into parsed, %{}
+    print_n_lines(body, flags.lines)
   end
 
   def read_file(filename) do
